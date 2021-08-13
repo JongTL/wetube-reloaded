@@ -1,19 +1,27 @@
 {
   "name": "wetube",
   "version": "1.0.0",
-  "description": "cloning youtube with Vanilla and NodeJS",
-  "main": "index.js",
-  "scripts": {
-    "start": "nodemon --exec babel-node index.js"
+  "description": "2nd study on wetube",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/JongTL/wetube-reloaded.git"
   },
-  "author": "won",
+  "scripts": {
+    "dev": "nodemon --exec babel-node src/server.js"
+  },
+  "author": "Jong Won",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/JongTL/wetube-reloaded/issues"
+  },
+  "homepage": "https://github.com/JongTL/wetube-reloaded#readme",
   "dependencies": {
-    "@babel/core": "^7.12.13",
-    "@babel/node": "^7.12.13",
-    "@babel/preset-env": "^7.12.13",
     "express": "^4.17.1"
   },
   "devDependencies": {
-    "nodemon": "^2.0.7"
+    "@babel/core": "^7.15.0",
+    "@babel/node": "^7.14.9",
+    "@babel/preset-env": "^7.15.0",
+    "nodemon": "^2.0.12"
   }
 }
