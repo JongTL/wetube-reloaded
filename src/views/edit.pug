@@ -4,4 +4,10 @@ extends base.pug
 
 
 block content  
-    h1 Edit Video 
+    h4 Change Title of video
+    form(method="POST")
+        //method get 은 주소창에 form 의 값이 포함된다. 
+        //그리고 정보를 받기만하면 get 만써도됨 post는 안그럼(로그인할때 등 ). 수정도 가능  
+        //정보 보내기 방법 
+        input(name="title",placeholder="Video Title",value=video.title, required)
+        input(value="Save",type="submit")

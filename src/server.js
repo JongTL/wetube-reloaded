@@ -1,3 +1,4 @@
+
 import express from "express";
 import morgan from "morgan";
 import globalRouter from"./routers/globalRouter";
@@ -5,7 +6,8 @@ import videoRouter from"./routers/videoRouter";
 import userRouter from"./routers/userRouter";
 
 
-const PORT=4000;
+
+
 
 const app = express();
 //express 앱이 만들어지고 난 이후에 코드작성
@@ -15,11 +17,14 @@ app.set("view engine", "pug")//퍼그를 뷰엔진으로 사용한다고 선언 
 app.set("views",process.cwd()+"/src/views"); //보여줄 파일이 있는 경로 설정
 
 app.use(logger);
+app.use(express.urlencoded({extended:true}));
+//#6.3  express app 이 form의 value를 이해할 수 있게 해주는 미들웨어
 
 app.use("/",globalRouter); //라우터 사용하기
 app.use("/videos",videoRouter);
 app.use("/users",userRouter);
 
+export default app;
 
 
 
@@ -31,8 +36,4 @@ app.use("/users",userRouter);
 //express 가 get 요청을 받으면 handleHome을 실행하는데 그때 req 과 res 를 넘겨줌. 
 
 
-const handleListening=() =>
-    console.log(`Server Listening on port http://localhost:${PORT}`);
-
-app.listen(PORT,handleListening);
 

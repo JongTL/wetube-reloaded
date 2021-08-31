@@ -1,6 +1,7 @@
 extends base.pug
 
-
-
 block content 
-    h1 Watch Vidoe
+    h3 #{video.views} #{video.views === 1 ? "view":"views"}
+    // ternary opertor 를 사용했다
+    a(href=`${video.id}/edit`) Edit Video &rarr;
+    
