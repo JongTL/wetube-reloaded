@@ -9,8 +9,12 @@ import {watch,
 
 const videoRouter=express.Router();
 
-videoRouter.get("/:id(\\d+)",watch); //파라미터 : 을 넣는게 중요하다. id는 다른이름으로 써도 됨. url에 변수를 넣을수있게 해줌
+//videoRouter.get("/:id(\\d+)",watch); //파라미터 : 을 넣는게 중요하다. id는 다른이름으로 써도 됨. url에 변수를 넣을수있게 해줌
 // = videoRouter.rout("/:id(\\d+)").get(watch);
+//현재는 숫자로된 아이디만 처리할 수 있음 
+//몽고에서 id는 24 개의 16진법 으로 표현된다. 이걸 정규표현식으로 표현해야함.
+videoRouter.get("/:id([0-9a-f]{24})",watch); //파라미터 : 을 넣는게 중요하다. id는 다른이름으로 써도 됨. url에 변수를 넣을수있게 해줌
+
 
 videoRouter.route("/:id(\\d+)/edit").get(getEdit).post(postEdit);
 //이 문장은 아래 두 문장과 뜻이 같다.

@@ -18,10 +18,11 @@ export const home=async(req,res)=>{
         return res.render("home",{ pageTitle : "Home", videos})
 }
 
-export const watch=(req,res)=> {
+export const watch=async(req,res)=> {
     // const id = req.params.id; 이렇게 해도 되고
     const {id} = req.params; //이렇게해도 똑같다. 이건 es6 를 사용한 것이란다.
-    return res.render("watch",{pageTitle: `Watching`});
+    const video=await Video.findById(id);
+    return res.render("watch",{pageTitle: video.title,video});
 }
 export const getEdit=(req,res)=> {
     const {id} = req.params; //이렇게해도 똑같다. 이건 es6 를 사용한 것이란다.
@@ -38,9 +39,38 @@ export const getUpload = (req,res)=>{
     return res.render("upload",{ pageTitle : "Upload video"});
 }
 
-export const postUpload = (req,res)=>{
-    const {title}=req.body;
-    return res.redirect("/");
+export const postUpload = async(req,res)=>{
+    const {title,description,hashtags}=req.body;
+    /*
+    const video=new Video({
+        title:title,
+        description:description,
+        createdAt : Date.now(),
+        hashtags:hashtags.split(",").map(word=>`#${word}`),
+        meta : {
+            views:0,
+            rating:0,
+        },
+    });
+    await video.save(); //database 에 저장. video 가 mongoose model이기 때문에  그리고 저장되는데 시간이 걸리기 때문에 위에 async 와 함께 await 써야함
+    */ //이렇게 하는 방법도 있고
+    try { //에러 해결하기
+        await Video.create({
+            title:title, //그냥 title 로 써도 된다.
+            description:description,
+            hashtags:hashtags.split(",").map(word=>`#${word}`),
+        });
+        //이렇게 하는 방법도 있다. 여기선 js 객체를 아예 안만들어도 된다.
+        return res.redirect("/");
+    } catch(error){
+        return res.render( "upload",{
+            pageTitle : "Uplaod Video",
+            errorMessage: error._message,
+        });
+    }
+
+    
+    
 
 }
 

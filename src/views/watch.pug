@@ -1,7 +1,10 @@
 extends base.pug
 
 block content 
-    h3 #{video.views} #{video.views === 1 ? "view":"views"}
-    // ternary opertor 를 사용했다
+    //h3 #{video.views} #{video.views === 1 ? "view":"views"} db를 쓰면서 오류가 나서 삭제
+    // ternary opertor 를 사용했다,
+    div
+        p=video.description
+        small=video.createdAt
     a(href=`${video.id}/edit`) Edit Video &rarr;
     
