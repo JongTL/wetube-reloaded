@@ -22,7 +22,12 @@ export const watch=async(req,res)=> {
     // const id = req.params.id; 이렇게 해도 되고
     const {id} = req.params; //이렇게해도 똑같다. 이건 es6 를 사용한 것이란다.
     const video=await Video.findById(id);
-    return res.render("watch",{pageTitle: video.title,video});
+    console.log(video);
+    if (video) { //ID가 없는 임의의 비디오를 사용자가 주소창에 입력할 경우를 대비
+        return res.render("watch",{pageTitle: video.title,video}); 
+    }
+    return res.render("404",{pageTitle:"Video not found."});
+    
 }
 export const getEdit=(req,res)=> {
     const {id} = req.params; //이렇게해도 똑같다. 이건 es6 를 사용한 것이란다.
