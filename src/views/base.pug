@@ -5,10 +5,12 @@ html(lang="ko")
         link(rel="stylesheet" href="https://unpkg.com/mvp.css")
     body
         header
-            
-
             h1=pageTitle
             //- 띄어쓰기 없이  = 로 이어붙이면 변수 pageTitle를 의미함. 그냥 h1 pageTitle로 하면 텍스트다.다른 text 와 섞을 땐 #{}로 해야한다.
+            nav
+                ul
+                    li
+                        a(href="/videos/upload") Upload Video
         main
             block content // 다른데서 이자리에 다른걸 쓰게할 수 있다
     include partials/footer
