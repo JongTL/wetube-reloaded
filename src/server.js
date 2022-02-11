@@ -1,3 +1,4 @@
+
 import express from "express";
 import morgan from "morgan";
 import globalRouter from"./routers/globalRouter";
@@ -5,7 +6,8 @@ import videoRouter from"./routers/videoRouter";
 import userRouter from"./routers/userRouter";
 
 
-const PORT=4000;
+
+
 
 const app = express();
 //express 앱이 만들어지고 난 이후에 코드작성
@@ -21,6 +23,7 @@ app.use("/",globalRouter); //라우터 사용하기
 app.use("/videos",videoRouter);
 app.use("/users",userRouter);
 
+export default app;
 
 //express 가 get 요청을 받으면 handleHome을 실행하는데 그때 req 과 res 를 넘겨줌. 
 
