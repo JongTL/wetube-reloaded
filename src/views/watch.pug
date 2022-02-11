@@ -3,4 +3,7 @@ extends base.pug
 
 
 block content 
-    h1 Watch Vidoe
+    h3 #{video.views} #{video.view ===1?"view" :"views"}
+    //-이렇게 쓰면 if 문 안쓰고 쓸 수 있음
+    a(href=`${video.id}/edit`) Edit Video &rarr;
+    //-"/edit" /을 쓰면 absolute, 안쓰면 relative 주소 
